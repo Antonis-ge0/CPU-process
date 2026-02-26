@@ -4,12 +4,10 @@ import java.util.ArrayList;
  * Class that implements the First fit memory allocation algorithm. It maps the memory in a two-dimensional array
  * according to the blocks given, and updates that map with each process loaded or removed.
  * Then it runs the first fit algorithm to load a process given, if it fits in memory.
- * @author Spyridon Drakakis
  */
 public class FirstFit extends MemoryAllocationAlgorithm {
     //updated map of all blocks and memory slots in those blocks.
     ArrayList<ArrayList<MemorySlot>> blockMemorySlots;
-
     /**
      * Constructor for class First fit.
      * @param availableBlockSizes An array containing the sizes of the blocks given.
@@ -22,7 +20,6 @@ public class FirstFit extends MemoryAllocationAlgorithm {
             blockMemorySlots.add(new ArrayList<>());
         }
     }
-
     /**
      * Method that implements the First fit algorithm. For each block consecutively, it tries to fit the process either
      * at the start of the block, in between other processes or at the end of the block. If a block is empty, it tries
@@ -41,12 +38,11 @@ public class FirstFit extends MemoryAllocationAlgorithm {
         /* TODO: you need to add some code here
          * Hint: this should return the memory address where the process was
          * loaded into if the process fits. In case the process doesn't fit, it
-         * should return -1. */
-
+         * should return -1. 
+         */
         //Mapping the block into consecutive MemorySlots and Free Spaces
         for (int i=0;i<availableBlockSizes.length && !fit ;i++){
             blockMemorySlots.set(i,new ArrayList<>());
-
             for (MemorySlot m: currentlyUsedMemorySlots) {
                 //if a memory slot is in the current block, add it the i-th row
                 if (m.getBlockStart() == currAddress) {
@@ -86,7 +82,6 @@ public class FirstFit extends MemoryAllocationAlgorithm {
                         MemorySlot m = new MemorySlot(address, address + p.getMemoryRequirements(), blockMemorySlots.get(i).get(blockMemorySlots.get(i).size() - 1).getBlockStart(),
                                 blockMemorySlots.get(i).get(blockMemorySlots.get(i).size() - 1).getBlockEnd());
                         currentlyUsedMemorySlots.add(m);
-
                         break;
                     }
                 }
@@ -100,17 +95,12 @@ public class FirstFit extends MemoryAllocationAlgorithm {
                     break;
                 }
             }
-
-
             //calculating address of next block
             currAddress+= availableBlockSizes[i];
-
         }
         sortCurrentlyUsedSlots(currentlyUsedMemorySlots);
         System.out.println(blockMemorySlots);
 
         return address;
     }
-
 }
-
