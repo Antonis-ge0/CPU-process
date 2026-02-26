@@ -4,7 +4,6 @@ import java.util.ArrayList;
  * Class that implements the cpu of the computer. It has objects of class Scheduler and MMU for scheduling and memory
  * management and it stores all processes that are to be executed and the current process. It also stores if it needs to
  * skip a cycle, and if it needs to call the mmu.
- * @author Spyridon Drakakis
  */
 public class CPU {
 
@@ -49,7 +48,6 @@ public class CPU {
 
             tick();
         }
-
     }
 
     /**
@@ -65,8 +63,6 @@ public class CPU {
             return;
         }else{
 
-
-
             if (checkIfNoProcesses()){
                 clock++;
                 return;
@@ -75,7 +71,6 @@ public class CPU {
             //if it is the first process of the program, load every process that have arrived and will arrive
             // before the first process is loaded and get
             //the appropriate process to be run.
-
             if (currentProcess==-1){
                 if(loadProcesses()){
                     if(checkIfNoProcesses()){
@@ -87,9 +82,7 @@ public class CPU {
                     p.getPCB().setState(ProcessState.RUNNING,clock);
                     twoCycles = true;
                 }
-
             }else {
-
                 if (scheduler instanceof SRTF) {
                     //if process is finished, load waiting processes and run scheduler.
                     if (getCurrentProcess().getPCB().getState()==ProcessState.TERMINATED){
@@ -107,8 +100,6 @@ public class CPU {
                             }
                         }
                     }
-
-
                     //if a process arrives that has priority, load it into memory
                     for (Process p : processes) {
 
@@ -128,7 +119,6 @@ public class CPU {
                             }
                         }
                     }
-
                     //if it is loading time, load waiting processes
                     if (loadingTime){
                         if(loadProcesses()){
@@ -169,9 +159,6 @@ public class CPU {
                             getCurrentProcess().run();
                         }
                     }
-
-
-
                 }
                 else if (scheduler instanceof FCFS){
                     //if process has terminated, load waiting processes and run scheduler.
@@ -197,14 +184,6 @@ public class CPU {
                     }
 
                 }
-
-
-
-
-
-
-
-
                 else if (scheduler instanceof RoundRobin){
                     //if a process has terminated, delete it from memory, load waiting processes and run scheduler.
                     if (getCurrentProcess().getPCB().getState()==ProcessState.TERMINATED){
@@ -229,9 +208,6 @@ public class CPU {
                             return;
                         }
                     }
-
-
-
                     //if a process has finished its turn in the cpu
                     if(((RoundRobin) scheduler).getTicks() == ((RoundRobin) scheduler).getQuantum()){
                         //load waiting processes
@@ -264,10 +240,7 @@ public class CPU {
 
         }
         clock++;
-
-
     }
-
     /**
      * Method that removes a process from memory.
      */
@@ -289,7 +262,6 @@ public class CPU {
         //after process is deleted from memory, it is always loading time.
         loadingTime=true;
     }
-
     /**
      * process that checks if there are no more things to do. It loops through the processes and confirms that every one
      * of them is terminated. Returns a boolean that is true when all processes are terminated and false if they are not.
@@ -307,14 +279,12 @@ public class CPU {
         return done;
 
     }
-
     /**
      * Method that loads any waiting processes. Only when a process is loaded does it tick the clock.
      * Returns a boolean that is true when all processes have been checked
      * and false if they have not.
      * @return a boolean that is true when all processes have been checked and false if they have not.
      */
-
     private boolean loadProcesses(){
         int count = 0;
         //checks all processes
@@ -333,15 +303,11 @@ public class CPU {
                     p.getPCB().setState(ProcessState.READY,clock);
                     break;
                 }
-
             }
             count++;
-
         }
-
         return count == processes.length;
     }
-
     /**
      * Method that returns the current process that is loaded in the cpu. Returns an object of class Process.
      * @return An object of class Process that is the process that is loaded in the cpu.
@@ -354,7 +320,6 @@ public class CPU {
         }
         return null;
     }
-
     /**
      * Method that resets hasBeenChecked in every process. It is called when a process is terminated and space is freed.
      */
@@ -363,7 +328,6 @@ public class CPU {
             p.getPCB().setHasBeenChecked(false);
         }
     }
-
     /**
      * Method that checks if a process can be loaded to memory even if all blocks are empty. If it cannot, set state to
      * terminated, as it would never be able to run
@@ -377,20 +341,16 @@ public class CPU {
                 break;
             }
         }
-
         if(!flag){
             p.getPCB().setState(ProcessState.TERMINATED,clock);
-
         }
     }
-
     /**
      * Method that checks if there are no processes that have arrived. If so, it compels the cpu to wait until there is
      * at least one process that has arrived. Returns a boolean that is true when there are no processes that have arrived and
      * false if there are.
      * @return A boolean that is true when there are no processes that have arrived and false if there are.
      */
-
     private boolean checkIfNoProcesses(){
         int count=0;
         for(Process p:processes){
@@ -401,6 +361,4 @@ public class CPU {
         }
         return !(count>0);
     }
-
-
 }
