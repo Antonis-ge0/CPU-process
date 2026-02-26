@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-/**
- * @author Konstantinos Sarchousoudis - Spyridon Drakakis
- */
+
 public class ProcessControlBlock {
     
     private final int pid;
@@ -63,7 +61,6 @@ public class ProcessControlBlock {
          else if (state.equals(ProcessState.READY)){
             stopTimes.add(currentClockTime);
          }
-        
     }
     
     public int getPid() { 
