@@ -1,7 +1,6 @@
 /**
  * Class that implements the FCFS scheduling algorithm. It stores the list of candidate processes to be run and when called
  * returns the process that is next in queue.
- * @author Antonis Georgosopoulos
  */
 public class FCFS extends Scheduler {
 
