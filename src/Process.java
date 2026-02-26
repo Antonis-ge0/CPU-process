@@ -1,7 +1,5 @@
-
 /**
  * Class that represents a process of the memory.
- * @author Konstantinos Sarchousoudis
  */
 public class Process {
     private ProcessControlBlock pcb;
@@ -103,5 +101,4 @@ public class Process {
     public void setClockTime(int time){
         this.clockTime = time;
     }
-
 }
