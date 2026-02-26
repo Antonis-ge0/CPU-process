@@ -1,14 +1,12 @@
 /**
  * Class that implements the SRTF scheduling algorithm. It stores the list of candidate processes to be run and when called
  * returns the one with the shortest remaining burst time.
- * @author Spyridon Drakakis
  */
 public class SRTF extends Scheduler {
     /**
      * Constructor for class SRTF. It runs the constructor for parent class, fetching the list of candidate processes to be run.
      */
     public SRTF() {
-
         super();
     }
 
@@ -17,7 +15,6 @@ public class SRTF extends Scheduler {
      * @param p Given process to be added to the list of candidate processes to be run.
      */
     public void addProcess(Process p) {
-
         processes.add(p);
     }
 
