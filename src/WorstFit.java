@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 /**
  * Class that implements the Worst Fit Algorithm to assign memory to processes.
- * 
  */
 public class WorstFit extends MemoryAllocationAlgorithm {
 
@@ -138,3 +137,4 @@ public class WorstFit extends MemoryAllocationAlgorithm {
         return address;
     }
 }
+
