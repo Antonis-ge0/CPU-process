@@ -5,7 +5,6 @@ import java.util.ArrayList;
  * according to the blocks given, and updates that map with each process loaded or removed.
  * Then it runs the Next fit algorithm to load a process given, if it fits in memory, from the block that loaded last time
  * it was called.
- * @author Antonis Georgosopoulos
  */
 public class NextFit extends MemoryAllocationAlgorithm {
 
@@ -69,7 +68,6 @@ public class NextFit extends MemoryAllocationAlgorithm {
                     i=k;
                     flag3=true;
                 }
-
                 // previousAddress = previousMemorySlot.getEnd();
             }
             //If the block already has other processes in
@@ -136,12 +134,8 @@ public class NextFit extends MemoryAllocationAlgorithm {
             }
             if(i==k){
                 flag2 = true;
-
             }
-
-            //}
             address2 += availableBlockSizes[i];
-
         }
         sortCurrentlyUsedSlots(currentlyUsedMemorySlots);
         System.out.println(blockMemorySlots);
