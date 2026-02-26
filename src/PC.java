@@ -1,7 +1,5 @@
 /**
- * @author Spyridon Drakakis
  * @author Antonis Georgosopoulos
- * @author Konstantinos Sarchousoudis
  */
 public class PC {
 
@@ -22,5 +20,4 @@ public class PC {
         CPU cpu = new CPU(scheduler, mmu, processes);
         cpu.run();
     }
-
 }
