@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Class taht implement the Worst Fit Algorithm to assign memory to processes.
- * @author Konstantinos Sarchousoudis
+ * Class that implements the Worst Fit Algorithm to assign memory to processes.
  * 
  */
 public class WorstFit extends MemoryAllocationAlgorithm {
@@ -42,19 +41,17 @@ public class WorstFit extends MemoryAllocationAlgorithm {
         // Holds a memorySlot in case it needs to be removed.
         MemorySlot toBeRemoved = null;
 
-
         /* 
          * Hint: this should return the memory address where the process was
          * loaded into if the process fits. In case the process doesn't fit, it
-         * should return -1. */
-
+         * should return -1. 
+         */
         for(int j=0;j< super.availableBlockSizes.length;j++){
             // Remove finished processes from the blockMemorySlots.
             for (MemorySlot memorySlot : blockMemorySlots.get(j)) {
                 if(!currentlyUsedMemorySlots.contains(memorySlot)){
                     toBeRemoved = memorySlot;
                 }
-                
             }
             // If a memory slot doesnt match the currently used ones remove it from the blockMemorySlots.
             if (toBeRemoved != null){
@@ -135,14 +132,9 @@ public class WorstFit extends MemoryAllocationAlgorithm {
                     blockMemorySlots.get(i).add(m);
                 }
             }
-
-            
             //calculating address of a block based on size in kB (assuming the memory is byte indexed)
             sortCurrentlyUsedSlots(currentlyUsedMemorySlots);
         }
-
         return address;
     }
-
-
 }
